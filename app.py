@@ -172,8 +172,8 @@ if page == "Returns & Descriptive Statistics":
     # --- Q1: Time series ---
     st.subheader("Q1 - Daily Percentage Log Returns")
     asset_sel = st.multiselect("Select assets", TICKERS, default=TICKERS)
-    fig = make_subplots(rows=len(asset_sel), cols=1, shared_xaxes=True,
-                        subplot_titles=asset_sel, vertical_spacing=0.04)
+    fig = make_subplots(rows=len(asset_sel), cols=1, shared_xaxes=False,
+                        vertical_spacing=0.06)
     for i, ticker in enumerate(asset_sel, 1):
         fig.add_trace(go.Scatter(
             x=returns.index, y=returns[ticker],
@@ -279,8 +279,8 @@ elif page == "DCC-GARCH Model":
     # --- Q4: Conditional volatility ---
     st.subheader("Q4 - Conditional Standard Deviations")
     asset_sel4 = st.multiselect("Select assets", TICKERS, default=TICKERS, key='q4')
-    fig4 = make_subplots(rows=len(asset_sel4), cols=1, shared_xaxes=True,
-                         subplot_titles=asset_sel4, vertical_spacing=0.04)
+    fig4 = make_subplots(rows=len(asset_sel4), cols=1, shared_xaxes=False,
+                         vertical_spacing=0.06)
     for i, ticker in enumerate(asset_sel4, 1):
         fig4.add_trace(go.Scatter(
             x=cond_vol.index, y=cond_vol[ticker],
@@ -360,8 +360,8 @@ elif page == "Portfolio Analysis":
     st.subheader("Q6 - Minimum Variance Portfolio Weights")
 
     asset_sel6 = st.multiselect("Select assets", TICKERS, default=TICKERS, key='q6')
-    fig6 = make_subplots(rows=len(asset_sel6), cols=1, shared_xaxes=True,
-                         subplot_titles=asset_sel6, vertical_spacing=0.04)
+    fig6 = make_subplots(rows=len(asset_sel6), cols=1, shared_xaxes=False,
+                         vertical_spacing=0.06)
     for i, ticker in enumerate(asset_sel6, 1):
         mean_w = mvp_df[ticker].mean()
         fig6.add_trace(go.Scatter(
@@ -378,7 +378,7 @@ elif page == "Portfolio Analysis":
                        y0=mvp_df[ticker].min(), y1=mvp_df[ticker].max(),
                        fillcolor="rgba(255,0,0,0.1)", line_width=0,
                        row=i, col=1)
-        fig6.update_yaxes(title_text="Weight", row=i, col=1, title_font_size=10)
+        fig6.update_yaxes(title_text=f"{col}  |  Weight", row=i, col=1, title_font_size=10)
 
     fig6.update_layout(height=160 * len(asset_sel6), margin=dict(t=30, b=20),
                        plot_bgcolor='white', paper_bgcolor='white')
@@ -441,8 +441,8 @@ elif page == "Portfolio Analysis":
         st.metric("Sharpe improvement", f"+{sharpe_mvp - sharpe_ew:.4f}")
 
     # Daily returns comparison
-    fig8 = make_subplots(rows=2, cols=1, shared_xaxes=True,
-                         subplot_titles=('MVP', 'Equal-Weight'),
+    fig8 = make_subplots(rows=2, cols=1, shared_xaxes=False,
+                         'Equal-Weight'),
                          vertical_spacing=0.08)
     fig8.add_trace(go.Scatter(x=mvp_returns.index, y=mvp_returns,
                               mode='lines', line=dict(width=0.6, color='steelblue'),
