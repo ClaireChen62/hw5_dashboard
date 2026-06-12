@@ -189,7 +189,9 @@ if page == "Returns & Descriptive Statistics":
 
     fig.update_layout(height=160 * len(asset_sel), margin=dict(t=30, b=20),
                       plot_bgcolor='white', paper_bgcolor='white')
-    fig.update_xaxes(showgrid=True, gridcolor='#eeeeee', tickformat='%Y')
+    for r in range(1, len(asset_sel) + 1):
+        fig.update_xaxes(showgrid=True, gridcolor='#eeeeee', tickformat='%Y',
+                         showticklabels=True, row=r, col=1)
     fig.update_yaxes(showgrid=True, gridcolor='#eeeeee', zeroline=True,
                      zerolinecolor='black', zerolinewidth=0.5)
     st.plotly_chart(fig, use_container_width=True)
@@ -295,7 +297,9 @@ elif page == "DCC-GARCH Model":
 
     fig4.update_layout(height=160 * len(asset_sel4), margin=dict(t=30, b=20),
                        plot_bgcolor='white', paper_bgcolor='white')
-    fig4.update_xaxes(showgrid=True, gridcolor='#eeeeee', tickformat='%Y')
+    for r in range(1, len(asset_sel4) + 1):
+        fig4.update_xaxes(showgrid=True, gridcolor='#eeeeee', tickformat='%Y',
+                          showticklabels=True, row=r, col=1)
     fig4.update_yaxes(showgrid=True, gridcolor='#eeeeee')
     st.plotly_chart(fig4, use_container_width=True)
 
@@ -378,7 +382,9 @@ elif page == "Portfolio Analysis":
 
     fig6.update_layout(height=160 * len(asset_sel6), margin=dict(t=30, b=20),
                        plot_bgcolor='white', paper_bgcolor='white')
-    fig6.update_xaxes(showgrid=True, gridcolor='#eeeeee', tickformat='%Y')
+    for r in range(1, len(asset_sel6) + 1):
+        fig6.update_xaxes(showgrid=True, gridcolor='#eeeeee', tickformat='%Y',
+                          showticklabels=True, row=r, col=1)
     fig6.update_yaxes(showgrid=True, gridcolor='#eeeeee',
                       zeroline=True, zerolinecolor='#aaaaaa')
     st.plotly_chart(fig6, use_container_width=True)
@@ -453,7 +459,9 @@ elif page == "Portfolio Analysis":
 
     fig8.update_layout(height=480, plot_bgcolor='white', paper_bgcolor='white',
                        margin=dict(t=30, b=20), showlegend=False)
-    fig8.update_xaxes(showgrid=True, gridcolor='#eeeeee', tickformat='%Y')
+    for r in [1, 2]:
+        fig8.update_xaxes(showgrid=True, gridcolor='#eeeeee', tickformat='%Y',
+                          showticklabels=True, row=r, col=1)
     fig8.update_yaxes(showgrid=True, gridcolor='#eeeeee',
                       zeroline=True, zerolinecolor='black', zerolinewidth=0.4)
     st.plotly_chart(fig8, use_container_width=True)
